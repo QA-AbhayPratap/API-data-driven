@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "ed332881-0c96-42b6-b08d-b59bd678ba91",
+		"name": "DATA DRIVEN",
+		"description": "Pik data from .csv file to postman 🥶🗽🗽",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "Register a user",
+					"id": "ba2e31c4-bd85-4d3f-ba51-4a945b3ba0f6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"pistol\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{Base url}}/api/register/"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Request and Response",
+					"id": "b4947d9d-64d0-41f4-9a4d-bdbc899d339f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"abhay.pratap@gmail.in\",\n    \"password\": \"QATester\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{Base url}}/api/register/qa"
+					},
+					"response": []
+				},
+				{
+					"name": "Picking Data from CSV File",
+					"id": "b843c8c7-ab24-4b3d-90aa-031d91a3cb6e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{Base url}}/{{endpoint}}"
+					},
+					"response": []
+				}
+			],
+			"id": "fb16f5f1-9155-4e97-93bf-6c499a0225c8",
+			"description": "New Folder:\n\n- **Register a user**\n    \n\nIn this API request we are sending a requests to server to register a user, server respond us with a valid id. i.e. user got resister.\n\n- **Verify Request and Response**,\n    \n\nIn this API request you can also check under the console. Requet body and Response body to validate both input are same.\n\nExample: Email and Password both are same.\n\n- **Picking Data from CSV File**\n    \n\nHere there are 3 variables\n\n- {{endpoint}}\n    \n- {{email}}\n    \n- {{password}}\n    \n\nAbove 3 variable we will pick from .csv file, File name is Data Driven API in Janitri account",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "284d900d-f9fc-4c75-93ba-72a74bc045bd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e997b833-1692-419d-9a5e-712d0cda5b61",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "fetching 2nd user data Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "760b6af5-f671-448f-b2be-6498e38c65ab",
+						"exec": [
+							"console.log(\"This is a log\")",
+							"console.error(\"This is an error\")",
+							"console.warn(\"This is a warning \")",
+							"console.info(\"This is info\")",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "828977ec-d370-42a5-8e31-32946a477b39",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "2d196154-5182-4856-99d5-d0ca7813d2ec",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base url}}/api/users?page=2 ",
+					"host": [
+						"{{Base url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2 "
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ad3780a1-2239-44df-a102-f324f0300ed2",
+				"type": "text/javascript",
+				"exec": [
+					"{",
+					"    console.log(\"Im starting testing API\")",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4d24f5f5-c091-464e-85ad-242d58414c66",
+				"type": "text/javascript",
+				"exec": [
+					"{",
+					"    ",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Base url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string"
+		}
+	]
+}
